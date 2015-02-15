@@ -1,0 +1,60 @@
+
+<!doctype>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+	<meta HTTP-EQUIV="Expires" CONTENT="-1">
+	<meta name="viewport" content="width=1000">
+
+	<title>Space Balls: A visualization of solar system planet sizes</title>
+
+	<link href='http://fonts.googleapis.com/css?family=Cardo:400,700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+
+	<link href="vendor/d3-context-menu/css/d3-context-menu.css" rel="stylesheet">
+	<link href="css/main.css?3" rel="stylesheet">
+<style>
+
+
+</style>
+
+</head>
+<body>
+	<div class="container">
+		<div class="jumbotron" style="text-align:center;background-color:#fefefe;">
+			<h1>Space Balls</h1>
+			<h2>A visualization of solar system planet sizes</h2>
+		</div>
+	</div>
+
+	<div style="height:830px;background-color:#000;">
+		<div class=" main-chart">
+			<div id="myViz"></div>
+		</div>
+		<div class="container too-small-msg">
+				<h3 style="padding:10px;color:white;">You need to resize your browser to a larger resolution in order to view this visualization.</h3>
+		</div>
+	</div>
+	<br>
+	<div class="container page-text">
+		<h3>What is this?</h3>
+		<p>
+			A visualization done for fun about the solar system. Also, I know Pluto and the Moon aren't planets, but I threw them in
+			because they're two of the most familar solar system objects.
+		</p>
+	</div>
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.11/d3.min.js"></script>
+	<script src="vendor/d3-tip/index.js"></script>
+	<script src="vendor/d3-context-menu/js/d3-context-menu.js"></script>
+
+	<script src="js/space-balls.js?1"></script>
+	<script src="js/main.js?1"></script>
+
+</body>
+</html>

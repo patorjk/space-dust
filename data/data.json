@@ -1,0 +1,70 @@
+{
+	"data": [
+		{
+			"name": "The Sun",
+			"diameter": 1391684,
+			"type": "star",
+			"distance": 0
+		},
+		{
+			"name": "Mercury",
+			"diameter": 4879,
+			"type": "terrestrial",
+			"distance": 57900000
+		},
+		{
+			"name": "Venus",
+			"diameter": 12104,
+			"type": "terrestrial",
+			"distance": 108200000
+		},
+		{
+			"name": "Earth",
+			"diameter": 12756,
+			"type": "terrestrial",
+			"distance": 149600000
+		},
+		{
+			"name": "The Moon",
+			"diameter": 3475,
+			"type": "terrestrial",
+			"distance": 149984000
+		},
+		{
+			"name": "Mars",
+			"diameter": 6792,
+			"type": "terrestrial",
+			"distance": 227900000
+		},
+		{
+			"name": "Jupiter",
+			"diameter": 142984,
+			"type": "gas",
+			"distance": 778600000
+		},
+		{
+			"name": "Saturn",
+			"diameter": 120536,
+			"type": "gas",
+			"distance": 1433500000
+		},
+		{
+			"name": "Uranus",
+			"diameter": 51118,
+			"type": "gas",
+			"distance": 2872500000
+		},
+		{
+			"name": "Neptune",
+			"diameter": 49528,
+			"type": "gas",
+			"distance": 4495100000
+		},
+		{
+			"name": "Pluto",
+			"diameter": 2390,
+			"type": "terrestrial",
+			"distance": 5870000000
+		}
+	]
+}

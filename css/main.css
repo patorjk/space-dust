@@ -1,0 +1,89 @@
+body {
+	font-family: 'Cardo', serif;
+	color:#2a2a2a;
+	background-color:#fefefe;
+}
+
+h1, h2 {
+	font-variant: small-caps;
+}
+
+h1 {
+	font-size: 60px;
+}
+h2 {
+	font-size: 26px;
+}
+
+.page-text {
+	font-size:16px;
+	margin-top:10px;
+}
+
+/* Planet vis stuff */
+
+.space-ball circle {
+	stroke: transparent;
+}
+
+.space-ball circle:hover {
+	stroke: rgba(75, 75, 75, 1);
+}
+
+/* Responsive */
+
+@media all and (max-width: 991px) {
+	.main-chart {
+		display: none;
+	}
+	.too-small-msg {
+		display: block;
+	}
+}
+
+.too-small-msg {
+	display: none;
+}
+
+/* Tool tips */
+
+.d3-tip {
+	line-height: 1;
+	padding: 8px;
+	background: rgba(75, 75, 75, 1);
+	color: #fff;
+	border-radius: 10px;
+	z-index:1100;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+	box-sizing: border-box;
+	display: inline;
+	font-size: 22px;
+	width: 100%;
+	line-height: 1;
+	color: rgba(75, 75, 75, 1);
+	position: absolute;
+	pointer-events: none;
+}
+
+/* Style northward tooltips differently */
+.d3-tip.s:after {
+	content: "\25B2";
+	margin: 0 0 1px 0;
+	top: -10px;
+	left: 0;
+	text-align: center;
+}
+
+.tt-row {
+	float:left;
+	padding:4px;
+}
+.tt-label {
+	display: inline-block;
+}
+.tt-value {
+	display: inline-block;
+}
