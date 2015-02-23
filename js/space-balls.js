@@ -193,6 +193,15 @@ var spaceBalls = function(opts) {
 	// Context menu
 	// ------------------------------------------------------------------------
 
+	var pmenu = [
+		{
+			title: 'Goto Wikipedia article',
+			action: function(elm, d, i) {
+				window.open(d.wikipedia);
+			}
+		}
+	];
+
 	var menu = [
 		{
 			title: 'Reset',
@@ -266,7 +275,7 @@ var spaceBalls = function(opts) {
 			top: opts.top,
 			left: opts.left - $('.d3-tip').outerWidth()/2,
 			opacity: 1
-		})
+		});
 	}
 
 	function updateAuxiliaryLines() {
@@ -512,7 +521,8 @@ var spaceBalls = function(opts) {
 			})
 			.on('mouseleave', function(d) {
 				tip.hide();
-			});
+			})
+			.on('contextmenu', d3.contextMenu(pmenu));
 
 		planets.exit().remove();
 
@@ -539,7 +549,7 @@ var spaceBalls = function(opts) {
 			})
 			.on('mouseleave', function(d) {
 				tip.hide();
-			});;
+			});
 
 		// Setup Guide Lines
 		enterGroup

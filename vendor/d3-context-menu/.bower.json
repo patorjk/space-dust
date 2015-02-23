@@ -14,11 +14,11 @@
     "d3": "3"
   },
   "homepage": "https://github.com/patorjk/d3-context-menu",
-  "_release": "1eee4f92a2",
+  "_release": "9166c25b29",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "1eee4f92a250d51da5d6a6b74f084d8f3920dea4"
+    "commit": "9166c25b293a465c1159df1f1958ff93e911d987"
   },
   "_source": "git://github.com/patorjk/d3-context-menu.git",
   "_target": "*",
