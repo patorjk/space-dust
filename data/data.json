@@ -4,67 +4,387 @@
 			"name": "The Sun",
 			"diameter": 1391684,
 			"type": "star",
-			"distance": 0
+			"distance": 0,
+			"category": "Star",
+			"hasImage": true,
+			"wikipedia": "https://en.wikipedia.org/wiki/Sun"
 		},
 		{
 			"name": "Mercury",
 			"diameter": 4879,
 			"type": "terrestrial",
-			"distance": 57900000
+			"distance": 57909050,
+			"category": "Planet",
+			"hasImage": true,
+			"wikipedia": "https://en.wikipedia.org/wiki/Mercury_(planet)"
 		},
 		{
 			"name": "Venus",
 			"diameter": 12104,
 			"type": "terrestrial",
-			"distance": 108200000
+			"distance": 108208000,
+			"category": "Planet",
+			"hasImage": true,
+			"wikipedia": "https://en.wikipedia.org/wiki/Venus"
 		},
 		{
 			"name": "Earth",
 			"diameter": 12756,
 			"type": "terrestrial",
-			"distance": 149600000
+			"distance": 149598261,
+			"category": "Planet",
+			"hasImage": true,
+			"wikipedia": "https://en.wikipedia.org/wiki/Earth"
 		},
 		{
 			"name": "The Moon",
 			"diameter": 3475,
 			"type": "terrestrial",
-			"distance": 149984000
+			"smAxis": 384399,
+			"category": "Moon of Earth",
+			"hasImage": true,
+			"wikipedia": "https://en.wikipedia.org/wiki/Moon"
 		},
 		{
 			"name": "Mars",
 			"diameter": 6792,
 			"type": "terrestrial",
-			"distance": 227900000
+			"distance": 227939100,
+			"category": "Planet",
+			"hasImage": true,
+			"wikipedia": "https://en.wikipedia.org/wiki/Mars"
 		},
 		{
 			"name": "Jupiter",
 			"diameter": 142984,
 			"type": "gas",
-			"distance": 778600000
+			"distance": 778547200,
+			"category": "Planet",
+			"hasImage": true,
+			"wikipedia": "https://en.wikipedia.org/wiki/Jupiter"
 		},
 		{
 			"name": "Saturn",
 			"diameter": 120536,
 			"type": "gas",
-			"distance": 1433500000
+			"distance": 1433449370,
+			"category": "Planet",
+			"hasImage": true,
+			"wikipedia": "https://en.wikipedia.org/wiki/Saturn"
 		},
 		{
 			"name": "Uranus",
 			"diameter": 51118,
 			"type": "gas",
-			"distance": 2872500000
+			"distance": 2870671400,
+			"category": "Planet",
+			"hasImage": true,
+			"wikipedia": "https://en.wikipedia.org/wiki/Uranus"
 		},
 		{
 			"name": "Neptune",
 			"diameter": 49528,
 			"type": "gas",
-			"distance": 4495100000
+			"distance": 4498542600,
+			"category": "Planet",
+			"hasImage": true,
+			"wikipedia": "https://en.wikipedia.org/wiki/Neptune"
 		},
 		{
 			"name": "Pluto",
 			"diameter": 2390,
 			"type": "terrestrial",
-			"distance": 5870000000
+			"distance": 5870000000,
+			"category": "Dwarf Planet",
+			"hasImage": true,
+			"wikipedia": "https://en.wikipedia.org/wiki/Pluto"
+		},
+		{
+			"name": "Ganymede",
+			"diameter": 5268.2,
+			"type": "terrestrial",
+			"smAxis": 1070400,
+			"category": "Moon of Jupiter",
+			"hasImage": true,
+			"wikipedia": "https://en.wikipedia.org/wiki/Ganymede_(moon)",
+			"meanDiameter": true
+		},
+		{
+			"name": "Titan",
+			"diameter": 5152,
+			"type": "terrestrial",
+			"smAxis": 1221870,
+			"category": "Moon of Saturn",
+			"hasImage": true,
+			"wikipedia": "https://en.wikipedia.org/wiki/Titan_(moon)",
+			"meanDiameter": true
+		},
+		{
+			"name": "Callisto",
+			"diameter": 4820.6,
+			"type": "terrestrial",
+			"smAxis": 1882700,
+			"category": "Moon of Jupiter",
+			"hasImage": true,
+			"wikipedia": "https://en.wikipedia.org/wiki/Callisto_(moon)",
+			"meanDiameter": true
+		},
+		{
+			"name": "Io",
+			"diameter": 3643.2,
+			"type": "terrestrial",
+			"smAxis": 421800,
+			"category": "Moon of Jupiter",
+			"hasImage": true,
+			"wikipedia": "https://en.wikipedia.org/wiki/Io_(moon)",
+			"meanDiameter": true
+		},
+		{
+			"name": "Europa",
+			"diameter": 3121.6,
+			"type": "terrestrial",
+			"smAxis": 671100,
+			"category": "Moon of Jupiter",
+			"hasImage": true,
+			"wikipedia": "https://en.wikipedia.org/wiki/Europa_(moon)",
+			"meanDiameter": true
+		},
+		{
+			"name": "Triton",
+			"diameter": 2706.8,
+			"type": "terrestrial",
+			"smAxis": 354759,
+			"category": "Moon of Neptune",
+			"hasImage": true,
+			"wikipedia": "https://en.wikipedia.org/wiki/Triton_(moon)",
+			"meanDiameter": true
+		},
+		{
+			"name": "Eris",
+			"diameter": 2326,
+			"type": "terrestrial",
+			"distance": 10166000000,
+			"category": "Dwarf Planet",
+			"hasImage": true,
+			"wikipedia": "https://en.wikipedia.org/wiki/Eris_(dwarf_planet)",
+			"meanDiameter": true,
+			"imageSource": "https://en.wikipedia.org/wiki/Eris_(dwarf_planet)#mediaviewer/File:Artist%27s_impression_dwarf_planet_Eris.jpg"
+		},
+		{
+			"name": "Titania",
+			"diameter": 1576.8,
+			"type": "terrestrial",
+			"smAxis": 435910,
+			"category": "Moon of Uranus",
+			"hasImage": true,
+			"wikipedia": "https://en.wikipedia.org/wiki/Titania_(moon)",
+			"meanDiameter": true
+		},
+		{
+			"name": "Rhea",
+			"diameter": 1527.6,
+			"type": "terrestrial",
+			"smAxis": 527108,
+			"category": "Moon of Saturn",
+			"hasImage": true,
+			"wikipedia": "https://en.wikipedia.org/wiki/Rhea_(moon)",
+			"meanDiameter": true
+		},
+		{
+			"name": "Oberon",
+			"radius": 761.4,
+			"type": "terrestrial",
+			"smAxis": 583520,
+			"category": "Moon of Uranus",
+			"hasImage": true,
+			"wikipedia": "https://en.wikipedia.org/wiki/Oberon_(moon)",
+			"meanDiameter": true
+		},
+		{
+			"name": "Iapetus",
+			"radius": 734.5,
+			"type": "terrestrial",
+			"smAxis": 3560820,
+			"category": "Moon of Saturn",
+			"hasImage": true,
+			"wikipedia": "https://en.wikipedia.org/wiki/Iapetus_(moon)",
+			"meanDiameter": true
+		},
+		{
+			"name": "Makemake",
+			"radius": 715,
+			"type": "terrestrial",
+			"distance": 6838866660,
+			"category": "Dwarf Planet",
+			"hasImage": true,
+			"wikipedia": "https://en.wikipedia.org/wiki/Makemake_(dwarf_planet)",
+			"meanDiameter": true,
+			"imageSource": "https://en.wikipedia.org/wiki/File:EightTNOs.png"
+		},
+		{
+			"name": "2007 OR10",
+			"radius": 640,
+			"type": "terrestrial",
+			"distance": 10000617700,
+			"category": "Dwarf Planet",
+			"hasImage": true,
+			"wikipedia": "https://en.wikipedia.org/wiki/(225088)_2007_OR10",
+			"meanDiameter": true,
+			"imageSource": "https://en.wikipedia.org/wiki/(225088)_2007_OR10#mediaviewer/File:1880-CT_MBrown_SPOTLIGHT_medium.jpg"
+		},
+		{
+			"name": "Haumea",
+			"radius": 620,
+			"type": "terrestrial",
+			"distance": 6465320780,
+			"category": "Dwarf Planet",
+			"hasImage": true,
+			"wikipedia": "https://en.wikipedia.org/wiki/Haumea_(dwarf_planet)",
+			"meanDiameter": true		
+		},
+		{
+			"name": "Charon",
+			"radius": 603.5,
+			"type": "terrestrial",
+			"smAxis": 17536,
+			"category": "Moon of Pluto",
+			"hasImage": true,
+			"wikipedia": "https://en.wikipedia.org/wiki/Charon_(moon)",
+			"meanDiameter": true
+		},
+		{
+			"name": "Umbriel",
+			"radius": 584.7,
+			"type": "terrestrial",
+			"smAxis": 266000,
+			"category": "Moon of Uranus",
+			"hasImage": true,
+			"wikipedia": "https://en.wikipedia.org/wiki/Umbriel_(moon)",
+			"meanDiameter": true
+		},
+		{
+			"name": "Ariel",
+			"radius": 578.9,
+			"type": "terrestrial",
+			"smAxis": 191020,
+			"category": "Moon of Uranus",
+			"hasImage": true,
+			"wikipedia": "https://en.wikipedia.org/wiki/Ariel_(moon)",
+			"meanDiameter": true
+		},
+		{
+			"name": "Dione",
+			"radius": 561.4,
+			"type": "terrestrial",
+			"smAxis": 377396,
+			"category": "Moon of Saturn",
+			"hasImage": true,
+			"wikipedia": "https://en.wikipedia.org/wiki/Dione_(moon)",
+			"meanDiameter": true
+		},
+		{
+			"name": "50000 Quaoar",
+			"radius": 555,
+			"type": "terrestrial",
+			"distance": 6493295580,
+			"category": "Dwarf Planet",
+			"hasImage": true,
+			"wikipedia": "https://en.wikipedia.org/wiki/50000_Quaoar",
+			"meanDiameter": true
+		},
+		{
+			"name": "Tethys",
+			"radius": 531.1,
+			"type": "terrestrial",
+			"smAxis": 294619,
+			"category": "Moon of Saturn",
+			"hasImage": true,
+			"wikipedia": "https://en.wikipedia.org/wiki/Tethys_(moon)",
+			"meanDiameter": true
+		},
+		{
+			"name": "90377 Sedna",
+			"radius": 500,
+			"type": "terrestrial",
+			"distance": 78449123400,
+			"category": "Dwarf Planet",
+			"hasImage": true,
+			"wikipedia": "https://en.wikipedia.org/wiki/90377_Sedna",
+			"meanDiameter": true
+		},
+		{
+			"name": "Ceres",
+			"radius": 476.2,
+			"type": "terrestrial",
+			"distance": 414010000,
+			"category": "Dwarf Planet",
+			"hasImage": true,
+			"wikipedia": "https://en.wikipedia.org/wiki/Ceres_(dwarf_planet)",
+			"meanDiameter": true
+		},
+		{
+			"name": "Sirius A",
+			"diameter": 2380001,
+			"type": "star",
+			"category": "Star",
+			"hasImage": "The Sun",
+			"wikipedia": "https://en.wikipedia.org/wiki/Sirius"
+		},
+		{
+			"name": "Pollux",
+			"diameter": 11128000,
+			"type": "star",
+			"category": "Star",
+			"hasImage": "The Sun",
+			"wikipedia": "https://en.wikipedia.org/wiki/Pollux_(star)"
+		},
+		{
+			"name": "Arcturus",
+			"diameter": 35748700,
+			"type": "star",
+			"category": "Star",
+			"hasImage": "The Sun",
+			"wikipedia": "https://en.wikipedia.org/wiki/Arcturus"
+		},
+		{
+			"name": "Rigel",
+			"diameter": 108498000,
+			"type": "star",
+			"category": "Star",
+			"hasImage": "The Sun",
+			"wikipedia": "https://en.wikipedia.org/wiki/Rigel"
+		},
+		{
+			"name": "Aldebaran",
+			"diameter": 61482200,
+			"type": "star",
+			"category": "Star",
+			"hasImage": "The Sun",
+			"wikipedia": "https://en.wikipedia.org/wiki/Aldebaran"
+		},
+		{
+			"name": "Antares",
+			"diameter": 974178800,
+			"type": "star",
+			"category": "Star",
+			"hasImage": "The Sun",
+			"wikipedia": "https://en.wikipedia.org/wiki/Antares"
+		},
+		{
+			"name": "Betelgeuse",
+			"diameter": 1641380000,
+			"type": "star",
+			"category": "Star",
+			"hasImage": "The Sun",
+			"wikipedia": "https://en.wikipedia.org/wiki/Betelgeuse"
+		},
+		{
+			"name": "UY Scuti",
+			"diameter": 2400000000,
+			"type": "star",
+			"category": "Star",
+			"hasImage": "The Sun",
+			"wikipedia": "https://en.wikipedia.org/wiki/UY_Scuti"
 		}
 	]
 }

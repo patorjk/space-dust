@@ -1,10 +1,21 @@
-body {
+html, body {
 	font-family: 'Cardo', serif;
 	color:#2a2a2a;
-	background-color:#fefefe;
+	background-color: #000;
+	height:100%;
+}
+
+.jumbotron.main-heading {
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: transparent;
+	color: #fff;
+	display: none;
 }
 
 h1, h2 {
+	text-align:center;
 	font-variant: small-caps;
 }
 
@@ -28,21 +39,6 @@ h2 {
 
 .space-ball circle:hover {
 	stroke: rgba(75, 75, 75, 1);
-}
-
-/* Responsive */
-
-@media all and (max-width: 991px) {
-	.main-chart {
-		display: none;
-	}
-	.too-small-msg {
-		display: block;
-	}
-}
-
-.too-small-msg {
-	display: none;
 }
 
 /* Tool tips */
