@@ -65,7 +65,8 @@
 		},
 		{
 			"name": "Saturn",
-			"diameter": 120536,
+			"1diameter": 120536,
+			"diameter": 116464,
 			"type": "gas",
 			"distance": 1433449370,
 			"category": "Planet",
@@ -328,7 +329,8 @@
 			"type": "star",
 			"category": "Star",
 			"hasImage": "The Sun",
-			"wikipedia": "https://en.wikipedia.org/wiki/Sirius"
+			"wikipedia": "https://en.wikipedia.org/wiki/Sirius",
+			"meanDiameter": true
 		},
 		{
 			"name": "Pollux",
@@ -336,7 +338,8 @@
 			"type": "star",
 			"category": "Star",
 			"hasImage": "The Sun",
-			"wikipedia": "https://en.wikipedia.org/wiki/Pollux_(star)"
+			"wikipedia": "https://en.wikipedia.org/wiki/Pollux_(star)",
+			"meanDiameter": true
 		},
 		{
 			"name": "Arcturus",
@@ -344,7 +347,8 @@
 			"type": "star",
 			"category": "Star",
 			"hasImage": "The Sun",
-			"wikipedia": "https://en.wikipedia.org/wiki/Arcturus"
+			"wikipedia": "https://en.wikipedia.org/wiki/Arcturus",
+			"meanDiameter": true
 		},
 		{
 			"name": "Rigel",
@@ -352,7 +356,8 @@
 			"type": "star",
 			"category": "Star",
 			"hasImage": "The Sun",
-			"wikipedia": "https://en.wikipedia.org/wiki/Rigel"
+			"wikipedia": "https://en.wikipedia.org/wiki/Rigel",
+			"meanDiameter": true
 		},
 		{
 			"name": "Aldebaran",
@@ -360,7 +365,8 @@
 			"type": "star",
 			"category": "Star",
 			"hasImage": "The Sun",
-			"wikipedia": "https://en.wikipedia.org/wiki/Aldebaran"
+			"wikipedia": "https://en.wikipedia.org/wiki/Aldebaran",
+			"meanDiameter": true
 		},
 		{
 			"name": "Antares",
@@ -368,7 +374,8 @@
 			"type": "star",
 			"category": "Star",
 			"hasImage": "The Sun",
-			"wikipedia": "https://en.wikipedia.org/wiki/Antares"
+			"wikipedia": "https://en.wikipedia.org/wiki/Antares",
+			"meanDiameter": true
 		},
 		{
 			"name": "Betelgeuse",
@@ -376,7 +383,8 @@
 			"type": "star",
 			"category": "Star",
 			"hasImage": "The Sun",
-			"wikipedia": "https://en.wikipedia.org/wiki/Betelgeuse"
+			"wikipedia": "https://en.wikipedia.org/wiki/Betelgeuse",
+			"meanDiameter": true
 		},
 		{
 			"name": "UY Scuti",
@@ -384,7 +392,8 @@
 			"type": "star",
 			"category": "Star",
 			"hasImage": "The Sun",
-			"wikipedia": "https://en.wikipedia.org/wiki/UY_Scuti"
+			"wikipedia": "https://en.wikipedia.org/wiki/UY_Scuti",
+			"meanDiameter": true
 		}
 	]
 }

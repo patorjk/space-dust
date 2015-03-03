@@ -12,24 +12,70 @@ var spaceBalls = function(opts) {
 		ttime = 1500,
 		zoom,
 		isDragging = false,
-		showingGrideLines = false;
+		showingGrideLines = false,
+		sunIsRedGiant = false,
+		redGiantDiameter = 356271104;
 
 	var tip = d3.tip().attr('class', 'd3-tip')
 		.direction('s')
 		.offset([10, 0])
 		.html(function(d) { 
 			d = d || {};
-			d.name = d.name || 'test';
-			return ''+
-				'<div class="tt-row">' +
-					'<div class="tt-value">'+d.name+'</div>' +
-				'</div>'+
-				'';
+			d.name = d.name || '?';
+			
+			var ret;
+
+			if ($(window).width() <= 1000) {
+				ret = '' +
+					'<div class="tt-row">' +
+						'<div class="tt-value">'+d.name+'</div>' +
+					'</div>';
+			} else {
+				var dnote = '(equator)';
+				if (d.meanDiameter) {
+					dnote = '(average)';
+				}
+
+				ret = '' +
+					'' +
+					'<div class="tt-row">' +
+						'<div class="tt-label">Name:</div>' +
+						'<div class="tt-value">'+d.name+'</div>' +
+					'</div>' +
+					'<div class="tt-row">' +
+						'<div class="tt-label">Category:</div>' +
+						'<div class="tt-value">'+d.category+'</div>' +
+					'</div>' +
+
+					'<div class="tt-row">' +
+						'<div class="tt-label">Diameter:</div>' +
+						'<div class="tt-value">'+commas(d.diameter)+' km ' + dnote + '</div>' +
+					'</div>' +
+					'';
+				if (d.distance) {
+					var amount = d.distance;
+					if (d.smAxis) {
+						amount = amount + d.smAxis;
+					}
+
+					ret += '' +
+						'<div class="tt-row">' +
+							'<div class="tt-label">Sun Dist:</div>' +
+							'<div class="tt-value">'+commas(amount)+' km (semi-major axis)</div>' +
+						'</div>';
+				}
+			}
+
+			return ret;
 		});
 
 	// ------------------------------------------------------------------------
 	// Position Objects
 	// ------------------------------------------------------------------------
+
+	function commas(x) {
+		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	}
 
 	function getDatumByName(name) {
 		for (ii = 0; ii < data.length; ii++) {
@@ -67,7 +113,7 @@ var spaceBalls = function(opts) {
 
 				if (nextX !== startX) {
 					if (d.type === 'terrestrial') {
-						nextX += 10;
+						nextX += 5;
 					} else if (d.type === 'gas') {
 						nextX += 10;//100
 					} else {
@@ -96,14 +142,23 @@ var spaceBalls = function(opts) {
 
 		planets.select('circle')
 			.transition()
-			.duration(ttime)
+			.duration(0)
 			.attr('r', function(d) {
 				return getPixelsFromKilometers(d.diameter) / 2;
-			})
-			.each('end', updateAuxiliaryLines); // this is only really be called once, but eh;
+			});
+
+			setTimeout(updateAuxiliaryLines, 100);
 	}
 
-	function setBetweenEarthAndMoon() {
+	function setBetweenEarthAndMoon(apogee) {
+		var dist;
+
+		if (apogee) {
+			dist = 405400;
+		} else {
+			dist = 384400;
+		}
+
 		var svg = d3.select(myId + ' svg g.main');
 
 		var planets = svg.selectAll('g.space-ball').data(curData, function(d) {
@@ -123,7 +178,7 @@ var spaceBalls = function(opts) {
 				if (d.name === 'Earth') {
 					x = startOffset;
 				} else if (d.name === 'The Moon') {
-					x = getPixelsFromKilometers(384400) +
+					x = getPixelsFromKilometers(dist) +
 						(getPixelsFromKilometers(getDatumByName('Earth').diameter) / 2) +
 						(getPixelsFromKilometers(getDatumByName('The Moon').diameter) / 2) + 
 						startOffset;
@@ -189,6 +244,31 @@ var spaceBalls = function(opts) {
 			.each('end', updateAuxiliaryLines); // this is only really be called once, but eh
 	}
 
+	function toggleSunAsRedGiant(dur) {
+		var planets = getPlanets(),
+			oldFillType = (!sunIsRedGiant) ? 'img_the_sun_rg' : 'img_the_sun';
+			fillType = (sunIsRedGiant) ? 'img_the_sun_rg' : 'img_the_sun';
+
+		dur = (typeof dur !== 'undefined') ? dur : ttime;
+
+		planets.select(myId + '_' + nameId('The Sun'))
+			.attr('fill', function() {
+				if (fillType === 'img_the_sun_rg') {
+					return 'url(#' + fillType + ')';
+				} else {
+					return 'url(#' + oldFillType + ')';
+				}
+			})
+			.transition()
+			.duration(dur)
+			.attr('r', function(d) {
+				return (sunIsRedGiant) ? getPixelsFromKilometers(redGiantDiameter)/2 : getPixelsFromKilometers(d.diameter)/2;
+			})
+			.each('end', function() {
+				d3.select(this).attr('fill', 'url(#' + fillType + ')');
+			});
+	}
+
 	// ------------------------------------------------------------------------
 	// Context menu
 	// ------------------------------------------------------------------------
@@ -208,11 +288,29 @@ var spaceBalls = function(opts) {
 			action: function(elm, d, i) {
 				curData = data;
 
-				updateVis(function() {
-					setStandardPosition();
-				});
-				
-				resetZoom();
+				sunIsRedGiant = false;
+				toggleSunAsRedGiant(0);
+
+				setTimeout(function() {
+					updateVis(function() {
+						setStandardPosition();
+					});
+					
+					resetZoom();
+				}, 20);
+			}
+		},
+		{
+			title: function() {
+				if (sunIsRedGiant) {
+					return 'Return the Sun to its normal size';
+				} else {
+					return 'Turn the Sun into a Red Giant';
+				}
+			},
+			action: function(elm, d, i) {
+				sunIsRedGiant = !sunIsRedGiant;
+				toggleSunAsRedGiant(ttime);
 			}
 		},
 		{
@@ -230,6 +328,25 @@ var spaceBalls = function(opts) {
 
 				updateVis(function() {
 					setBetweenEarthAndMoon();
+				});
+				resetZoom();
+			}
+		},
+		{
+			title: 'Align Planets Between the Earth and the Moon (Apogee)',
+			action: function(elm, d, i) {
+				var objs = ['Mercury', 'Venus', 'Earth', 'The Moon', 'Mars', 'Jupiter', 'Saturn', 'Neptune', 'Uranus', 'Pluto'];
+
+				curData = [];
+
+				data.forEach(function(d) {
+					if ( $.inArray(d.name, objs) !== -1) {
+						curData.push(d);
+					}
+				});
+
+				updateVis(function() {
+					setBetweenEarthAndMoon(true);
 				});
 				resetZoom();
 			}
@@ -268,6 +385,17 @@ var spaceBalls = function(opts) {
 
 	// ------------------------------------------------------------------------
 
+	function getSize(d) {
+		var bbox = this.getBBox(),
+			diameter = getPixelsFromKilometers(d.diameter) * 0.8,
+			cbbox = {
+				width: diameter,
+				height: diameter / 5
+			},
+			scale = Math.min(cbbox.width/bbox.width, cbbox.height/bbox.height);
+		d.scale = scale;
+	}
+
 	function customShow(opts, d) {
 		tip.show(d);
 
@@ -304,15 +432,27 @@ var spaceBalls = function(opts) {
 		tip.hide();
 		d3.select(myId + ' svg g.main').attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
 		updateAuxiliaryLines();
+
+		var planets = getPlanets();
+		planets.select('circle').attr('fill', fillFunct);
+
+		//console.dir(d3.event.translate);
+		//console.dir(d3.event.scale);
 	}
 
-	function resetZoom() {
+	function resetZoom(dur, ease, scale, trans) {
+		dur = (typeof dur === 'number') ? dur : ttime;
+		ease = (typeof ease === 'string') ? ease : 'cubic-in-out';
+		scale = (typeof scale === 'number') ? scale : 1;
+		trans = (typeof trans !== 'undefined') ? trans : [0,0];
+
 		tip.hide();
-		zoom.scale(1);
-		zoom.translate([0,0]);
+		zoom.scale(scale);
+		zoom.translate(trans);
 		d3.select(myId + ' svg g.main')
 			.transition()
-			.duration(ttime)
+			.ease(ease)
+			.duration(dur)
 			.attr("transform", "translate(" + zoom.translate() + ")scale(" + zoom.scale() + ")");
 		updateAuxiliaryLines();
 	}
@@ -405,6 +545,27 @@ var spaceBalls = function(opts) {
 		}
 	}
 
+	function fillFunct(d) {
+		var name = nameId(d.name);
+
+		if (d.hasImage === 'The Sun') {
+
+			if (d.name === 'The Sun') {
+				name = (sunIsRedGiant) ? name + '_rg' : name;
+			}
+
+			if (getPixelsFromKilometers(d.diameter) * zoom.scale() > 2500) {
+				return 'rgb(230, 77, 20)';
+			} else {
+				return 'url(#img_' + name + ')';
+			}
+		} else if (d.hasImage) {
+			return 'url(#img_' + name + ')';
+		} else {
+			return '#088';
+		}
+	}
+
 	/* 
 		Create visualization
 	*/
@@ -453,6 +614,25 @@ var spaceBalls = function(opts) {
 				.attr('y', 0)
 				.attr('height', rr*2)
 				.attr('width', rr*2);
+
+			if (data[ii].name === 'The Sun') {
+				rr = getPixelsFromKilometers(redGiantDiameter) / 2;
+
+				pattern = defs.append('pattern')
+					.attr('id', 'img_' + name + '_rg')
+					.attr('x', -rr)
+					.attr('y', -rr)
+					.attr('height', rr*2)
+					.attr('width', rr*2)
+					.attr("patternUnits", "userSpaceOnUse");
+
+				pattern.append('image')
+					.attr('xlink:href', imgName)
+					.attr('x', 0)
+					.attr('y', 0)
+					.attr('height', rr*2)
+					.attr('width', rr*2);
+			}
 		}
 
 		svg.append('g').attr('class', 'guide');
@@ -471,19 +651,19 @@ var spaceBalls = function(opts) {
 
 		var drag = d3.behavior.drag()
 			.origin(function(d) { return d; })
-			.on("dragstart", function dragstarted(d) {
+			.on('dragstart', function dragstarted(d) {
 				isDragging = true;
 				tip.hide();
 				d3.event.sourceEvent.stopPropagation();
-				d3.select(this).classed("dragging", true);
+				d3.select(this).classed('dragging', true);
 			})
-			.on("drag", function dragged(d) {
+			.on('drag', function dragged(d) {
 				var translateStr = 'translate('+ (d.x = d3.event.x) +','+ (d.y = d3.event.y) +')';
-				d3.select(this).attr("transform", translateStr);
+				d3.select(this).attr('transform', translateStr);
 				updatePosition(d.name, d.x, d.y);
 			})
-			.on("dragend", function dragended(d) {
-				d3.select(this).classed("dragging", false);
+			.on('dragend', function dragended(d) {
+				d3.select(this).classed('dragging', false);
 				isDragging = false;
 				updateAuxiliaryLines();
 			});
@@ -504,14 +684,7 @@ var spaceBalls = function(opts) {
 			.attr('r', function(d) {
 				return 0;
 			})
-			.attr('fill', function(d) {
-				var name = nameId(d.name);
-				if (d.hasImage) {
-					return 'url(#img_' + name + ')';
-				} else {
-					return '#088';
-				}
-			})
+			.attr('fill', fillFunct)
 			.attr('stroke-width', function(d) {
 				return 2;
 			})
@@ -523,6 +696,51 @@ var spaceBalls = function(opts) {
 				tip.hide();
 			})
 			.on('contextmenu', d3.contextMenu(pmenu));
+
+		enterGroup
+			.append('text')
+			.text(function(d) {
+				return d.name;
+			})
+			.style('font-size', '1px')
+			.each(getSize)
+			.style('font-size', function(d) {
+				return d.scale + 'px';
+			})
+			.attr('text-anchor', 'middle')
+			.attr('x', function() {
+				return 0;
+			})
+			.attr('y', function(d) {
+				var fontSize = parseFloat(d3.select(this).style('font-size'), 10);
+				d.nameY = (getPixelsFromKilometers(d.diameter) / 2) + (fontSize * 1.2);
+				return d.nameY;
+			})
+			.attr('fill', 'white');
+
+		enterGroup
+			.append('text')
+			.text(function(d) {
+				var cat = d.category;
+				if (cat === 'Planet' || cat === 'Star') {
+					cat = '';
+				}
+				return cat;
+			})
+			.style('font-size', '1px')
+			.each(getSize)
+			.style('font-size', function(d) {
+				return d.scale + 'px';
+			})
+			.attr('text-anchor', 'middle')
+			.attr('x', function() {
+				return 0;
+			})
+			.attr('y', function(d) {
+				var fontSize = parseFloat(d3.select(this).style('font-size'), 10);
+				return d.nameY + (fontSize * 1.2);
+			})
+			.attr('fill', 'white');
 
 		planets.exit().remove();
 
@@ -536,10 +754,19 @@ var spaceBalls = function(opts) {
 			.attr('transform', function(d) {
 				return 'translate('+0+','+0+')';
 			})
-			.attr('class', 'guide-lines')
+			.attr('class', 'guide-lines');
+
+		// Setup Guide Lines
+		enterGroup
+			.append('line')
+			.attr('class', 'vline')
+			.attr('stroke', guideLineColor)
+			.attr('x1', vX1Pos)
+			.attr('x2', vX2Pos)
+			.attr('y1', -height*10)
+			.attr('y2', height*10)
 			.on('mouseenter', function(d) {
 				if (isDragging || !showingGrideLines) return;
-				
 				var coordinates = d3.mouse(this);
 
 				customShow({
@@ -550,16 +777,6 @@ var spaceBalls = function(opts) {
 			.on('mouseleave', function(d) {
 				tip.hide();
 			});
-
-		// Setup Guide Lines
-		enterGroup
-			.append('line')
-			.attr('class', 'vline')
-			.attr('stroke', guideLineColor)
-			.attr('x1', vX1Pos)
-			.attr('x2', vX2Pos)
-			.attr('y1', -height*10)
-			.attr('y2', height*10);
 		enterGroup
 			.append('line')
 			.attr('class', 'hline')
@@ -590,6 +807,10 @@ var spaceBalls = function(opts) {
 	});
 
 	$('.main-heading').fadeIn(ttime);
+
+	setTimeout(function() {
+		$('.main-heading').fadeOut(ttime);
+	}, 5000);
 
 	// process data
 	data.forEach(function(d) {

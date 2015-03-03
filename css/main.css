@@ -12,6 +12,7 @@ html, body {
 	background-color: transparent;
 	color: #fff;
 	display: none;
+	pointer-events: none;
 }
 
 h1, h2 {
@@ -74,12 +75,30 @@ h2 {
 }
 
 .tt-row {
-	float:left;
 	padding:4px;
 }
 .tt-label {
+	width: 60px;
+	text-align:right;
+	margin-right: 6px;
 	display: inline-block;
 }
 .tt-value {
 	display: inline-block;
+}
+
+/*
+	Responsive
+*/
+
+@media (max-width: 1000px) {
+
+	.d3-tip {
+		font-size: 28px;
+	}
+
+	.right-click-message {
+		display: none;
+	}
+
 }
